@@ -1,7 +1,6 @@
-name: Github Actions Example
+name: Run Build & Test
 
 on:
-  pull_request:
   push:
     branches:
       - develop
