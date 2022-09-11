@@ -1,11 +1,12 @@
 {
   "name": "mvp-actions",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run clean && next dev",
     "build": "next build",
     "start": "next start",
+    "clean": "rm -r .next ",
     "lint": "next lint"
   },
   "dependencies": {
@@ -15,6 +16,12 @@
   },
   "devDependencies": {
     "eslint": "8.23.0",
-    "eslint-config-next": "12.3.0"
+    "eslint-config-next": "12.3.0",
+    "husky": "^8.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo [Husky] pre-commit"
+    }
   }
 }
