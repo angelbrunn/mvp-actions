@@ -1,0 +1,25 @@
+# isOk cuando se arma un pre release ya aumentamos el major
+name: Prepare pre-release
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  test:
+    name: Running Units Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Increment Major
+        run: npm version major
