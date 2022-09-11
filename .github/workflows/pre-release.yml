@@ -1,0 +1,19 @@
+name: Version Increment in develop major mode
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: git config --global user.name 'Kuma Akai'
+      - run: git config --global user.email 'angelbrunn@gmail.com'
+      - run: npm version major -m "[RELEASE] %s"
+      - run: git push
