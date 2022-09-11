@@ -1,9 +1,9 @@
-name: Version Increment in develop major mode
+name: Version Increment in develop patch mode
 
 on:
   push:
     branches:
-      - staging
+      - develop
 
 jobs:
   version:
@@ -15,5 +15,5 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - run: git config --global user.name 'Kuma Akai'
       - run: git config --global user.email 'angelbrunn@gmail.com'
-      - run: npm version major -m "[RELEASE] %s"
+      - run: npm version patch -m "[RELEASE] %s"
       - run: git push
