@@ -1,4 +1,4 @@
-# isOk cuando se arma un pre release ya aumentamos el major
+# Error - aca solo tegno que hacer un npm version major
 name: Prepare pre-release
 
 on:
@@ -21,5 +21,3 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Increment Major
-        run: npm version major

@@ -1,4 +1,4 @@
-# isOk workflow basico 
+# isOk workflow basico - sumar un npm version patch
 name: Run Build & Test
 
 on:
@@ -21,3 +21,9 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          version-type: "patch"
