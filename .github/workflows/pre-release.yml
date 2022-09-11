@@ -3,7 +3,7 @@ name: Version Increment in develop major mode
 on:
   push:
     branches:
-      - develop
+      - staging
 
 jobs:
   version:
