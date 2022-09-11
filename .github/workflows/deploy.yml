@@ -3,7 +3,7 @@ name: Github Actions Example
 on:
   pull_request:
   push:
-    branches: 
+    branches:
       - develop
 
 jobs:
@@ -12,35 +12,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install
-      run: npm install
-    - name: Build
-      run: npm run build
-    bump-version:
-    name: "Bump Version on develop"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: "Checkout source code"
-        uses: "actions/checkout@v2"
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          ref: ${{ github.ref }}
-      - name: "cat package.json"
-        run: cat ./package.json
-      - name: "Setup Node.js"
-        uses: "actions/setup-node@v1"
-        with:
-          node-version: 12
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@develop"
-        with:
-          tag-prefix: ''
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: "cat package.json"
-        run: cat ./package.json
+          node-version: ${{ matrix.node-version }}
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
