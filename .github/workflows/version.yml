@@ -1,4 +1,4 @@
-name: Version Increment
+name: Version Increment in develop patch mode
 
 on:
   push:

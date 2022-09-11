@@ -1,23 +1,19 @@
-# Error - aca solo tegno que hacer un npm version major
-name: Prepare pre-release
+name: Version Increment in develop major mode
 
 on:
   push:
     branches:
-      - staging
+      - develop
 
 jobs:
-  test:
-    name: Running Units Tests
+  version:
     runs-on: ubuntu-latest
-
+    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install
-        run: npm install
-      - name: Build
-        run: npm run build
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - run: git config --global user.name 'Kuma Akai'
+      - run: git config --global user.email 'angelbrunn@gmail.com'
+      - run: npm version major -m "[RELEASE] %s"
+      - run: git push
